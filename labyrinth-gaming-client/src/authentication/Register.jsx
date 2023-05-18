@@ -1,16 +1,40 @@
-import React from 'react'
+import React, {useContext, useState} from 'react'
 import {Link} from 'react-router-dom'
+import {AuthContext} from './AuthProvider'
+
 
 const Register = () => {
-
+	const {createUser} = useContext(AuthContext)
+	const [error, setError] = useState("")
         const handleRegister = event =>{
                 event.preventDefault()
+                const name = event.target.username.value
+                const photo = event.target.photo.value
                 const email = event.target.email.value
                 const password = event.target.password.value
                 console.log(email)
+		
+		if (email===""){
+			setError("Empty email or password field not allowed")
+		}
+		if (password===""){
+			setError("Empty email or password field not allowed")
+		}
+		if (password!=="" && password.length<6){
+			setError("Password length must be greater than 5")
+		}
 
+		createUser(email, password)
+		.then(result=>{
+			result.user['name'] = name
+			result.user['photo'] = photo
+		})
+		.catch(error=>{
+			console.log(error.message)
+		})
 
-        }
+       }
+
 
 
 
@@ -41,21 +65,23 @@ const Register = () => {
                                           <label className="label">
                                             <span className="label-text text-white">Email</span>
                                           </label>
-                                          <input type="email" placeholder="email" name="email" className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white" required/>
+                                          <input type="email" placeholder="email" name="email" className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white"/>
                                         </div>
                                         <div className="form-control">
                                           <label className="label">
                                             <span className="label-text text-white">Password</span>
                                           </label>
-                                          <input type="password" placeholder="password" name="password"  className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white" required/>
+                                          <input type="password" placeholder="password" name="password"  className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white"/>
                                         </div>
                                         <div className="form-control mt-6">
-                                          <button className="btn btn-success">Login</button>
+                                          <button className="btn btn-success">Register</button>
                                         </div>
                                         <small className="mt-10">
                                         <Link to="/register" className="hover:underline">Don't have an   account? Click here to register</Link>
                                         </small>
                                       </form>
+				      
+				     <h2 className="text-warning"> {error} </h2>
                                    </div>
 
                                   </div>

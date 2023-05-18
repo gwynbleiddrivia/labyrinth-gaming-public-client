@@ -5,11 +5,13 @@ import App from './App.jsx'
 import './index.css'
 
 
+{/*importing necessary components*/}
 import Home from './pages/Home.jsx'
 import Blogs from './pages/Blogs.jsx'
 import AllToys from './pages/AllToys.jsx'
 import Login from './authentication/Login.jsx'
 import Register from './authentication/Register.jsx'
+import AuthProvider from './authentication/AuthProvider.jsx'
 
 
 import {
@@ -53,7 +55,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <div className="w-full mx-auto text-white">
   <React.StrictMode>
-      <RouterProvider router={router} />
+  	<AuthProvider>
+      		<RouterProvider router={router} />
+	</AuthProvider>
   </React.StrictMode>
   </div>
 )
