@@ -1,14 +1,23 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import app from './firebase.config.js'
+import {AuthContext} from './AuthProvider'
 
 const Login = () => {
+	const {logIn} = useContext(AuthContext)
 	const handleLogin = event =>{
 		event.preventDefault()
 		const email = event.target.email.value
 		const password = event.target.password.value
 		console.log(email)
-
+		
+		logIn(email, password)
+		.then(result=>{
+			console.log(result.user)
+		})
+		.catch(error=>{
+			console.log(error,message)
+		})
 		
 	}
 	console.log(app._options.apiKey)
