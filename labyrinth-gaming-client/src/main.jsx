@@ -8,8 +8,8 @@ import './index.css'
 import Home from './pages/Home.jsx'
 import Blogs from './pages/Blogs.jsx'
 import AllToys from './pages/AllToys.jsx'
-import Login from './pages/Login.jsx'
-import Register from './pages/Register.jsx'
+import Login from './authentication/Login.jsx'
+import Register from './authentication/Register.jsx'
 
 
 import {
