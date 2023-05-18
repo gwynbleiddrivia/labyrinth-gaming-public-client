@@ -4,7 +4,7 @@ import app from './firebase.config.js'
 import {AuthContext} from './AuthProvider'
 
 const Login = () => {
-	const {logIn} = useContext(AuthContext)
+	const {logIn, googleLogIn} = useContext(AuthContext)
 	const handleLogin = event =>{
 		event.preventDefault()
 		const email = event.target.email.value
@@ -20,6 +20,18 @@ const Login = () => {
 		})
 		
 	}
+	
+	const handleGoogleLogIn = () =>{
+		googleLogIn()
+		.then(result=>{
+			console.log(result.user)
+			result.user['name'] = result.user.displayName				
+		})
+		.catch(error=>console.log(error))
+	}
+
+
+
 	console.log(app._options.apiKey)
 
 	return (
@@ -48,6 +60,10 @@ const Login = () => {
 					<div className="form-control mt-6">
 					  <button className="btn btn-success">Login</button>
 					</div>
+					<div className="form-control mt-6">
+					  <button className="btn btn-success" onClick={handleGoogleLogIn}>Login from Google</button>
+					</div>
+
 					<small className="mt-10">
 					<Link to="/register" className="hover:underline">Don't have an account? Click here to register</Link>
 					</small>
