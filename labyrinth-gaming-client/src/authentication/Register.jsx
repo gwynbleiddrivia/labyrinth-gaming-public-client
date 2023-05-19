@@ -8,11 +8,10 @@ const Register = () => {
 	const [error, setError] = useState("")
         const handleRegister = event =>{
                 event.preventDefault()
-                const username = event.target.username.value
-                const userphoto = event.target.userphoto.value
+                const userName = event.target.username.value
+                const userPhoto = event.target.userphoto.value
                 const email = event.target.email.value
                 const password = event.target.password.value
-                console.log(email)
 		
 		if (email===""){
 			setError("Empty email or password field not allowed")
@@ -28,11 +27,29 @@ const Register = () => {
 		.then(result=>{
 			result.user.displayName = username
 			result.user.photoURL = userphoto
-			console.log(result.user)
 		})
 		.catch(error=>{
 			console.log(error.message)
 		})
+		
+		const newUser = {email, userName, userPhoto}
+		fetch('https://labyrinth-gaming-server.vercel.app/users',{
+			method: 'POST',
+			headers:{
+				'content-type':'application/json'
+			},
+			body:JSON.stringify(newUser)
+
+		})
+		.then(res=>res.json())
+		.then(data=>{
+			console.log(data)
+			if(data.insertedId){
+				console.log('success')
+			}
+		}
+		)
+
 
        }
 

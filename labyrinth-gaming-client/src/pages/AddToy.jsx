@@ -1,10 +1,24 @@
 import {Link} from 'react-router-dom'
 import {AuthContext} from '../authentication/AuthProvider.jsx'
-import {useContext} from 'react'
+import {useContext, useState, useEffect} from 'react'
 
 const AddToy = () => {
 	const {user} = useContext(AuthContext)
-	console.log(user)
+	console.log(user.email)
+	const url = `https://labyrinth-gaming-server.vercel.app/users?email=${user.email}`
+	const [currentUser, setCurrentUser] = useState([])
+	useEffect(()=>{
+		fetch(url)
+		.then(res=>res.json())
+		.then(data=>{
+			console.log(data)
+			setCurrentUser(data)
+		})
+	},[user])
+	console.log(currentUser[0])
+	console.log(currentUser[0]?.userName)
+	console.log(currentUser[0]?.userPhoto)
+	console.log(user.email)
 	return (
 		<div>
 		                  <form className="card-body p-0 flex flex-col">
@@ -33,13 +47,13 @@ const AddToy = () => {
 							  <label className="label">
 							    <span className="label-text text-white">Seller Name</span>
 							  </label>
-							  <input type="text" placeholder="Seller Name" size="30" name="sellername" defaultValue={user.username} className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white"/>
+							  <input type="text" placeholder="Seller Name" size="30" name="sellername" defaultValue={currentUser[0]?.userName} className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white"/>
 							</div>
 							<div className="form-control">
 							  <label className="label">
 							    <span className="label-text text-white">Seller Email</span>
 							  </label>
-							  <input type="text" placeholder="Seller Email" size="30" name="selleremail" defaultValue={user.userphoto} className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white"/>
+							  <input type="text" placeholder="Seller Email" size="30" name="selleremail" defaultValue={user.email} className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white"/>
 							</div>
 					
 
