@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import {NavLink, Link} from 'react-router-dom'
+import {NavLink, Link, useLocation} from 'react-router-dom'
 import {AuthContext} from '../authentication/AuthProvider.jsx'
 
 
@@ -10,6 +10,31 @@ const Header = () => {
 		.then(()=>{})
 		.catch(console.log(error))
 	}
+	const location = useLocation()
+	console.log(location)
+	var locName = ""
+	if(location.pathname === "/"){
+		locName = "Home"
+	}
+	if(location.pathname === "/blogs"){
+		locName = "Blogs"
+	}
+	if(location.pathname === "/alltoys"){
+		locName = "All Toys"
+	}
+	if(location.pathname === "/mytoys"){
+		locName = "My Toys"
+	}
+	if(location.pathname === "/addtoy"){
+		locName = "Add A Toy"
+	}
+	if(location.pathname === "/login"){
+		locName = "Login"
+	}
+	if(location.pathname === "/register"){
+		locName = "Register"
+	}
+	console.log(locName)
 	return (
 		<div>
 			<div className="navbar bg-emerald-950 flex-col lg:flex-row justify-between pt-0 pb-0">
@@ -17,7 +42,7 @@ const Header = () => {
 			    <Link to="/" className="w-1/5">
 				<img src="https://i.ibb.co/PQCRSk2/editlogo.png" alt="" className=""/>
 			    </Link>
-			    <p className="text-xl">Labyrinth Gaming | </p>
+			    <p className="text-xl">Labyrinth Gaming | {locName} </p>
 			  </div>
 			  <div className="flex flex-col">
 			  <div className="flex-none">

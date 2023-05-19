@@ -15,6 +15,7 @@ import Login from './authentication/Login.jsx'
 import Register from './authentication/Register.jsx'
 import AuthProvider from './authentication/AuthProvider.jsx'
 import PrivateRoute from './shared/PrivateRoute.jsx'
+import ErrorPage from './ErrorPage.jsx'
 
 
 import {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
 	
     ]
   },
+  {
+		path: "*",
+		element: <ErrorPage></ErrorPage>    
+  }
 ]);
 
 
