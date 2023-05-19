@@ -25,12 +25,12 @@ const Header = () => {
 			    	<NavLink to="/" className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>Home</NavLink>
 			    	<NavLink to="/blogs" className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>Blogs</NavLink>
 			    	<NavLink to="/alltoys" className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>All Toys</NavLink>
+				<NavLink to="/mytoys" className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>My Toys</NavLink>
+				<NavLink to="/addtoy" className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>Add A Toy</NavLink>
 			    
 			    {
 			    user?
 			    	<>
-				<NavLink to="/mytoys" className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>My Toys</NavLink>
-				<NavLink to="/addtoy" className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>Add A Toy</NavLink>
 				<img className ="w-12 h-12 rounded"
 				title={
 				user.name?

@@ -1,10 +1,20 @@
 import React, {useContext} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate, useLocation} from 'react-router-dom'
 import app from './firebase.config.js'
 import {AuthContext} from './AuthProvider'
 
 const Login = () => {
 	const {logIn, googleLogIn} = useContext(AuthContext)
+
+{/*Redirection from and to private routes handler*/}	
+	const location = useLocation()
+	const navigate = useNavigate()
+	const from = location.state?.from?.pathname || "/"
+
+
+
+
+{/*email authentificated login handler*/}	
 	const handleLogin = event =>{
 		event.preventDefault()
 		const email = event.target.email.value
@@ -14,20 +24,23 @@ const Login = () => {
 		logIn(email, password)
 		.then(result=>{
 			console.log(result.user)
+			navigate(from,{replace:true})
 		})
 		.catch(error=>{
-			console.log(error,message)
+			console.log(error.message)
 		})
 		
 	}
+{/*google authentificated login handler*/}	
 	
 	const handleGoogleLogIn = () =>{
 		googleLogIn()
 		.then(result=>{
 			console.log(result.user)
 			result.user['name'] = result.user.displayName				
+			navigate(from,{replace:true})
 		})
-		.catch(error=>console.log(error))
+		.catch(error=>console.log(error.message))
 	}
 
 
@@ -41,7 +54,7 @@ const Login = () => {
 
 				    <div className="text-center lg:text-left">
 				      <h1 className="text-2xl font-bold">Login from here...</h1>
-				      <p className="">to get more access to your contents</p>
+				      <small className="">to get more access to your contents, <br/>to see all toys, your toys and to add a toy</small>
 				    </div>
 				    <div className="card p-0 w-full text-white">
 				      <form className="card-body p-0" onSubmit={handleLogin}>

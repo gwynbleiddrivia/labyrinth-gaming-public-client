@@ -14,6 +14,7 @@ import MyToys from './pages/MyToys.jsx'
 import Login from './authentication/Login.jsx'
 import Register from './authentication/Register.jsx'
 import AuthProvider from './authentication/AuthProvider.jsx'
+import PrivateRoute from './shared/PrivateRoute.jsx'
 
 
 import {
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "/alltoys",
-		element: <AllToys></AllToys>
+		element:  <PrivateRoute>   <AllToys></AllToys></PrivateRoute>
 	},
 	{
 		path: "/login",
@@ -49,11 +50,11 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "/addtoy",
-		element: <AddToy></AddToy>
+		element: <PrivateRoute> <AddToy></AddToy>  </PrivateRoute>   
 	},
 	{
 		path: "/mytoys",
-		element: <MyToys></MyToys>
+		element: <PrivateRoute> <MyToys></MyToys>  </PrivateRoute>   
 	}
 	
     ]

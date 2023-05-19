@@ -45,7 +45,7 @@ const Register = () => {
 
                                     <div className="text-center lg:text-left">
                                       <h1 className="text-2xl font-bold">Register here...</h1>
-                                      <p className="">to create an account</p>
+                                      <small className="">to create an account</small>
                                     </div>
                                     <div className="card p-0 w-full text-white">
                                       <form className="card-body p-0" onSubmit={handleRegister}>
