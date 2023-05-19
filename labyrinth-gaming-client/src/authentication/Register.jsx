@@ -8,8 +8,8 @@ const Register = () => {
 	const [error, setError] = useState("")
         const handleRegister = event =>{
                 event.preventDefault()
-                const name = event.target.username.value
-                const photo = event.target.photo.value
+                const username = event.target.username.value
+                const userphoto = event.target.userphoto.value
                 const email = event.target.email.value
                 const password = event.target.password.value
                 console.log(email)
@@ -26,8 +26,9 @@ const Register = () => {
 
 		createUser(email, password)
 		.then(result=>{
-			result.user['name'] = name
-			result.user['photo'] = photo
+			result.user.displayName = username
+			result.user.photoURL = userphoto
+			console.log(result.user)
 		})
 		.catch(error=>{
 			console.log(error.message)
@@ -59,7 +60,7 @@ const Register = () => {
                                           <label className="label">
                                             <span className="label-text text-white">Photo URL</span>
                                           </label>
-                                          <input type="text" placeholder="Photo" name="photo" className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white"/>
+                                          <input type="text" placeholder="Photo" name="userphoto" className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white"/>
                                         </div>
 					<div className="form-control">
                                           <label className="label">
