@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react'
 import {Link} from 'react-router-dom'
 import {AuthContext} from './AuthProvider'
-
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 
 const Register = () => {
 	const {createUser} = useContext(AuthContext)
@@ -48,6 +48,11 @@ const Register = () => {
 			console.log(data)
 			if(data.insertedId){
 				console.log('success')
+                              Swal.fire(
+                                  'Welcome!',
+                                  'Account created successfully!',
+                                  'success'
+                                )
 			}
 		}
 		)
