@@ -11,6 +11,7 @@ import Blogs from './pages/Blogs.jsx'
 import AllToys from './pages/AllToys.jsx'
 import AddToy from './pages/AddToy.jsx'
 import MyToys from './pages/MyToys.jsx'
+import ToyDetails from './pages/ToyDetails.jsx'
 import Login from './authentication/Login.jsx'
 import Register from './authentication/Register.jsx'
 import AuthProvider from './authentication/AuthProvider.jsx'
@@ -41,6 +42,11 @@ const router = createBrowserRouter([
 		path: "/alltoys",
 		element: <AllToys></AllToys>,
 		loader: ()=> fetch('https://labyrinth-gaming-server.vercel.app/toys')
+	},
+	{
+		path: "/toydetails/:id",
+		element: <ToyDetails></ToyDetails>,
+		loader: ({params})=> fetch(`https://labyrinth-gaming-server.vercel.app/toys/${params.id}`)
 	},
 	{
 		path: "/login",

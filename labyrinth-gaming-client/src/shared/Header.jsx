@@ -49,6 +49,9 @@ const Header = () => {
 	if(location.pathname === "/register"){
 		locName = "Register"
 	}
+	if(location.pathname.includes("/toydetails")){
+		locName = "Toy Details"
+	}
 	console.log(locName)
 	return (
 		<div className="mb-4">
