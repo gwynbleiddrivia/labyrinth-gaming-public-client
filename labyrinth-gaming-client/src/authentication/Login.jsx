@@ -1,10 +1,12 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import {Link, useNavigate, useLocation} from 'react-router-dom'
 import app from './firebase.config.js'
 import {AuthContext} from './AuthProvider'
 import { FaGoogle } from 'react-icons/fa';
 
 const Login = () => {
+	const [errorMsg, setErrorMsg] = useState("")
+	const err = ""
 	const {logIn, googleLogIn, loading} = useContext(AuthContext)
 
 {/*Redirection from and to private routes handler*/}	
@@ -28,7 +30,10 @@ const Login = () => {
 			navigate(from,{replace:true})
 		})
 		.catch(error=>{
-			console.log(error.message)
+			console.log(error)
+			if(error){
+				setErrorMsg("This user is not created yet. Please register first")
+			}
 		})
 		
 	}
@@ -82,7 +87,7 @@ const Login = () => {
 					<div className="form-control mt-6">
 					  <button className="btn btn-accent flex justify-between" onClick={handleGoogleLogIn}>Login from Google <FaGoogle/></button>
 					</div>
-
+					<p className="text-warning">{errorMsg}</p>
 					<small className="mt-10">
 					<Link to="/register" className="hover:underline">Don't have an account? Click here to register</Link>
 					</small>

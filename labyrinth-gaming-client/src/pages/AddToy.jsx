@@ -19,15 +19,47 @@ const AddToy = () => {
 	console.log(currentUser[0]?.userName)
 	console.log(currentUser[0]?.userPhoto)
 	console.log(user.email)
+
+	const handleAddToy = event =>{
+		event.preventDefault()
+		const form = event.target
+		const toyphoto = form.toyphoto.value
+		const toyname = form.toyname.value
+		const sellername = form.sellername.value
+		const selleremail = form.selleremail.value
+		const subcategory = form.subcategory.value
+		const toyprice = form.toyprice.value
+		const rating = form.rating.value
+		const quantity = form.quantity.value
+		const description = form.description.value
+	
+		const newToy = {toyphoto, toyname, sellername, selleremail, subcategory, toyprice, rating, quantity, description}
+		console.log(newToy)
+		fetch('https://labyrinth-gaming-server.vercel.app/toys',{
+			method: 'POST',
+			headers:{
+				'content-type' : 'application/json'
+			},
+			body:JSON.stringify(newToy)
+		})
+		.then(res=>res.json())
+		.then(data=>{
+			console.log(data)
+			if(data.insertedId){
+				console.log('toy added successfully')
+			}
+		})
+
+	}
 	return (
 		<div>
-		                  <form className="card-body p-0 flex flex-col">
+		                  <form onSubmit={handleAddToy} className="card-body p-0 flex flex-col">
 				  	<div className="first-div flex justify-around">
 							<div className="form-control">
 							  <label className="label">
 							    <span className="label-text text-white">Picture URL for the toy</span>
 							  </label>
-							  <input type="text" placeholder="Picture URL" name="photo" size="60" defaultValue="" className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white"/>
+							  <input type="text" placeholder="Picture URL" name="toyphoto" size="60" defaultValue="" className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white"/>
 							</div>
 							<div className="form-control">
 							  <label className="label">
@@ -77,7 +109,7 @@ const AddToy = () => {
 							  <label className="label">
 							    <span className="label-text text-white">Price</span>
 							  </label>
-							  <input type="text" placeholder="Toy Price" size="30" name="toy price" defaultValue="" className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white"/>
+							  <input type="text" placeholder="Toy Price" size="30" name="toyprice" defaultValue="" className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white"/>
 							</div>
 							<div className="form-control">
 							  <label className="label">

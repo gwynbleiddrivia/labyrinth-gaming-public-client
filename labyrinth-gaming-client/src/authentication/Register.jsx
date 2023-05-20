@@ -13,6 +13,8 @@ const Register = () => {
                 const email = event.target.email.value
                 const password = event.target.password.value
 		
+		console.log(event.target,"eikhane")
+
 		if (email===""){
 			setError("Empty email or password field not allowed")
 		}
