@@ -26,7 +26,12 @@ const AllToys = () => {
 		const form = event.target
 		const query = form.query.value
 		const queriedToys = allToys.filter(toy=>toy.toyname==query)
-		setLoadedToys(queriedToys)
+		if(query==""){
+			setLoadedToys(allToys)
+		}
+		else{
+			setLoadedToys(queriedToys)
+		}
 	}
 	return (
 		<div className="m-auto w-fit flex flex-col gap-5">
@@ -72,10 +77,17 @@ const AllToys = () => {
 			
 				</div> 
 			})}
-			
-			<button onClick={loadAll} className={`rounded-lg btn-success w-fit p-3 mx-auto ${!boolVal ? 'hidden':''} `}>Load more</button>
-			<button onClick={load20} className={`rounded-lg btn-success w-fit p-3 mx-auto ${!boolVal ? '':'hidden'} `}>See Less</button>
-		</div>
+			{
+				(allToys.length > 20) ?
+				<>
+					<button onClick={loadAll} className={`rounded-lg btn-success w-fit p-3 mx-auto ${!boolVal ? 'hidden':''} `}>Load more</button>
+					<button onClick={load20} className={`rounded-lg btn-success w-fit p-3 mx-auto ${!boolVal ? '':'hidden'} `}>See Less</button>
+
+				</>:
+				<></>
+
+			}	
+				</div>
 	);
 };
 
