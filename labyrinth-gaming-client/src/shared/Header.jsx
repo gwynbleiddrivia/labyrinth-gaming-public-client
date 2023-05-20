@@ -1,18 +1,32 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import {NavLink, Link, useLocation} from 'react-router-dom'
 import {AuthContext} from '../authentication/AuthProvider.jsx'
 
 
 const Header = () => {
 	const {user, logOut} = useContext(AuthContext)
-	console.log(user,"from Header")
+	console.log(user,"user from Header")
+
+	const [currentUser, setCurrentUser] = useState([])
+	const url = `https://labyrinth-gaming-server.vercel.app/users?email=${user?.email}`
+	useEffect(()=>{
+	fetch(url)
+	.then(res=>res.json())
+	.then(data=>{
+		console.log(data,"data from Header")
+		setCurrentUser(data)
+	})
+	},[user])
+	console.log(currentUser[0]?.userName,"currentUser from Header")
+	console.log(currentUser[0]?.userPhoto,"currentUser from Header")
+
+
 	const handleLogout = () =>{
 		logOut()
 		.then(()=>{})
 		.catch(console.log(error))
 	}
 	const location = useLocation()
-	console.log(location)
 	var locName = ""
 	if(location.pathname === "/"){
 		locName = "Home"
@@ -59,13 +73,13 @@ const Header = () => {
 			    	<>
 				<img className ="w-12 h-12 rounded"
 				title={
-				user.name?
-				user.name:
+				currentUser[0]?.userName?
+				currentUser[0]?.userName:
 				"Name not registered"
 				}
 				src={
-				user.photo?
-				user.photo:
+				currentUser[0]?.userPhoto?
+				currentUser[0]?.userPhoto:
 				"https://i.ibb.co/LnyGbJ6/usernotfound.jpg"
 				}
 				/>

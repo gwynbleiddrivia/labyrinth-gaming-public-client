@@ -4,8 +4,8 @@ import {useContext, useState, useEffect} from 'react'
 
 const AddToy = () => {
 	const {user} = useContext(AuthContext)
-	console.log(user.email)
-	const url = `https://labyrinth-gaming-server.vercel.app/users?email=${user.email}`
+	console.log(user?.email)
+	const url = `https://labyrinth-gaming-server.vercel.app/users?email=${user?.email}`
 	const [currentUser, setCurrentUser] = useState([])
 	useEffect(()=>{
 		fetch(url)
@@ -53,7 +53,7 @@ const AddToy = () => {
 							  <label className="label">
 							    <span className="label-text text-white">Seller Email</span>
 							  </label>
-							  <input type="text" placeholder="Seller Email" size="30" name="selleremail" defaultValue={user.email} className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white"/>
+							  <input type="text" placeholder="Seller Email" size="30" name="selleremail" defaultValue={user?.email} className="input input-ghost input-bordered text-white active:bg-transparent hover:bg-transparent focus: bg-transparent focus:text-white border border-white"/>
 							</div>
 					
 
