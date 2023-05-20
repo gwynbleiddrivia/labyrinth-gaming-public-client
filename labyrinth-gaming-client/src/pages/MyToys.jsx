@@ -59,14 +59,17 @@ const MyToys = () => {
 					</form>
 
 
-					  <div className="grid grid-cols-5 gap-12 align-items text-start border-t p-4 ">
+					  <div className="text-start border-t p-3 flex">
 
-								<p className="col-span-2">Toy Name</p> 	
-								<p className="col-start-3 col-span-2">Seller Name</p>	
-								<p className="col-start-5 col-span-2">Sub Category</p>	
-								<p className="col-start-7 col-span-2"> Price</p>	
-								<p className="col-start-9 col-span-2">Quantity</p>	
-								<img src="https://i.ibb.co/qpzVYYX/dice.gif" alt="" className="w-16 h-12 col-start-11"/>
+								<p className="mr-24">Toy <br/>Name</p> 	
+								<p className="mr-24">Photo <br/>URL</p>	
+								<p className="mr-16">Sub<br/>Category</p>	
+								<p className="mr-24"> Price</p>	
+								<p className="mr-20"> Rating</p>	
+								<p className="mr-8">Quantity</p>	
+								<p className="mr-8">Description</p>	
+								<img src="https://i.ibb.co/qpzVYYX/dice.gif" alt="" className="w-16 h-12 mr-16"/>
+								<img src="https://i.ibb.co/ykGR5Cx/dnd.gif" alt="" className="w-16 h-12"/>
 
 				
 					</div>
@@ -75,15 +78,21 @@ const MyToys = () => {
 						<div className="flex-grow border-t border-white"></div>
 					</div>
 				{loadedToys.map(toy=>{
-					return <div key={toy._id} className="grid grid-cols-5 gap-10 align-items text-start border rounded p-3">
+					return <div key={toy._id} className="grid grid-cols-5 gap-12 align-items text-start border rounded p-3">
 
-								<p className="col-span-2">{toy.toyname}</p> 	
-								<p className="col-start-3 col-span-2">{toy.sellername}</p>	
-								<p className="col-start-5 col-span-2">{toy.subcategory}</p>	
-								<p className="col-start-7 col-span-2">{toy.toyprice}</p>	
-								<p className="col-start-9 col-span-2">{toy.quantity}</p>	
-								<Link to={`/toydetails/${toy._id}`} className="col-start-11">
-								<button className="col-start-11 p-2 btn-success rounded">View Details</button>
+								<p className="col-span-1">{toy.toyname}</p> 	
+								<p className="col-start-2 col-span-1 underline hover:text-emerald-200"><a target='_blank' href={toy.toyphoto}>image link</a></p>
+								<p className="col-start-3 col-span-1">{toy.subcategory}</p>	
+								<p className="col-start-4 col-span-1">{toy.toyprice}</p>	
+								<p className="col-start-5 col-span-1">{toy.rating}</p>	
+								<p className="col-start-6 col-span-1">{toy.quantity}</p>	
+								<button className="col-start-7 col-span-1 w-fit border border-white rounded p-2" title={toy.description}>Hover here</button>	
+								<Link to={`/toydetails/${toy._id}`} className="col-start-8 col-span-1">
+								<button className="btn-warning rounded p-2 text-center">Update</button>
+								</Link>
+								<Link className="col-start-9">
+								<button className="btn-error rounded p-2 text-center">Delete</button>
+
 								</Link>
 
 
