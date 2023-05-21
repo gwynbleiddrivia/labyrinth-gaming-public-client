@@ -7,7 +7,20 @@ import {AuthContext} from '../authentication/AuthProvider.jsx'
 const MyToys = () => {
 		const {user} = useContext(AuthContext)
 		const [sellerToys, setSellerToys] = useState([])
-		const url = `https://labyrinth-gaming-server.vercel.app/toys?email=${user?.email}`
+		const [url, setUrl]  = useState(`https://labyrinth-gaming-server.vercel.app/toys?email=${user?.email}`)
+		const handleAscending = event =>{
+			 setUrl(`https://labyrinth-gaming-server.vercel.app/toys?email=${user?.email}&ascended=true`)
+	              
+
+		}
+		const handleDescending = ()=>{
+			setUrl(`https://labyrinth-gaming-server.vercel.app/toys?email=${user?.email}&descended=true`)
+		}
+		const handleRemove = ()=>{
+			setUrl(`https://labyrinth-gaming-server.vercel.app/toys?email=${user?.email}`)
+		}
+
+
 		useEffect(()=>{
 			fetch(url)
 			.then(res=>res.json())
@@ -15,7 +28,7 @@ const MyToys = () => {
 				console.log(data, "data from my toys")
 				setSellerToys(data)
 			})
-		},[user])
+		},[url])
 
 		const allToys = sellerToys
 		const t20Toys = allToys.slice(0,20)
@@ -48,7 +61,8 @@ const MyToys = () => {
 		}
 		return (
 			<div className="m-auto w-fit flex flex-col gap-5">
-					  
+					<div className="flex justify-around">
+
 					<form className="form-control" onSubmit={handleSearch}>
 					  <div className="input-group">
 					    <input type="text" name="query" defaultValue="" placeholder="Search by toy name" className="input input-bordered" />
@@ -58,7 +72,15 @@ const MyToys = () => {
 					  </div>
 					</form>
 
+					<button onClick={handleAscending} className="btn w-fit">sort by ascending prices</button>
+					<button onClick={handleDescending} className="btn w-fit">sort by descending prices</button>
+					<button onClick={handleRemove} className="btn w-fit">remove sort</button>
 
+
+
+
+					</div>
+				
 					  <div className="text-start border-t p-3 flex">
 
 								<p className="mr-24">Toy <br/>Name</p> 	
