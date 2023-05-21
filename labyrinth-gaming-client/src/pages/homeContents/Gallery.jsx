@@ -8,7 +8,7 @@ const Gallery = () => {
 	},[])
 	return (
 		<div>
-			<h2 data-aos="slide-right" data-aos-duration="800" className="text-5xl mb-5">Enjoy Our Wonderful Board Games Gallore</h2>
+			<h2 className="text-5xl mb-5">Enjoy Our Wonderful Board Games Gallore</h2>
 							
 				<div className="carousel w-fit">
 				  <div id="slide1" className="carousel-item relative w-full">
