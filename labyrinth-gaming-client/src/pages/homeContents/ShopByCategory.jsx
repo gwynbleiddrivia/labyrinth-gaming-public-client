@@ -30,7 +30,7 @@ const ShopByCategory = () => {
 	const funData = allData.filter(categoryData=>categoryData.subcategory=="Fun")
 	
 	return (
-		<div data-aos="flip-up" data-aos-duration="800">
+		<div data-aos="slide-left" data-aos-duration="800">
 			<h2 className="text-5xl mb-5">Shop by Category Here!!</h2>
 			  <Tabs>
 			    <TabList className="mx-auto">
