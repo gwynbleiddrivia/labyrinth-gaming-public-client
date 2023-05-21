@@ -71,9 +71,6 @@ const AllToys = () => {
 							<p className="col-start-5 col-span-2">{toy.subcategory}</p>	
 							<p className="col-start-7 col-span-2">{toy.toyprice}</p>	
 							<p className="col-start-9 col-span-2">{toy.quantity}</p>	
-							{/*
-`/toydetails/${toy._id}`
-							*/}
 
 							<Link to={
 							`/toydetails/${toy._id}`
