@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useContext} from 'react'
 import { Link} from 'react-router-dom'
 import {AuthContext} from '../authentication/AuthProvider.jsx'
-
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 
 
 const MyToys = () => {
@@ -19,7 +19,42 @@ const MyToys = () => {
 		const handleRemove = ()=>{
 			setUrl(`https://labyrinth-gaming-server.vercel.app/toys?email=${user?.email}`)
 		}
+		const handleDelete = (_id) =>{
+			console.log(_id)
+			Swal.fire({
+				  title: 'Are you sure you want to delete this entry?',
+				  showDenyButton: true,
+				  showCancelButton: true,
+				  confirmButtonText: 'Yes',
+				  denyButtonText: 'No',
+				  customClass: {
+				    actions: 'my-actions',
+				    cancelButton: 'order-1 right-gap',
+				    confirmButton: 'order-2',
+				    denyButton: 'order-3',
+				  }
+				}).then((result) => {
+				  if (result.isConfirmed) {
+				  	console.log('confirmed, flagged for deletion')
+					fetch(`https://labyrinth-gaming-server.vercel.app/toys/${_id}`,{
+						method: 'DELETE'
+					})
+					.then(res=>res.json())
+					.then(data=>{
+						if(data.deletedCount>0){
+				    			Swal.fire('Entry deleted!', '', 'success')
+							const remainingToys = loadedToys.filter(loadedToy=>loadedToy._id!=_id)
+							setLoadedToys(remainingToys)
+						}
+					})
+				  }
+				  else if (result.isDenied) {
+				    Swal.fire('Entry is not deleted', '', 'info')
+				  }
+				})
+			handleRemove()
 
+		}
 
 		useEffect(()=>{
 			fetch(url)
@@ -112,10 +147,8 @@ const MyToys = () => {
 								<Link to={`/updatetoyinfo/${toy._id}`} className="col-start-8 col-span-1">
 								<button className="btn-warning rounded p-2 text-center">Update</button>
 								</Link>
-								<Link className="col-start-9">
-								<button className="btn-error rounded p-2 text-center">Delete</button>
+								<button onClick={()=>handleDelete(toy._id)} className="btn-error rounded p-2 text-center col-start-9">Delete</button>
 
-								</Link>
 
 
 				
