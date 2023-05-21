@@ -8,7 +8,6 @@ import ExtraSecond from './homeContents/ExtraSecond.jsx'
 const Home = () => {
 	return (
 		<div>
-			<h2>This is Home</h2>
 			<Banner></Banner>
 			<ShopByCategory></ShopByCategory>
 			<Gallery></Gallery>
