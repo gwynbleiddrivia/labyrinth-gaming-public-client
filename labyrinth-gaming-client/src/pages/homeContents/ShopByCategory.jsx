@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom'
 import {AuthContext} from '../../authentication/AuthProvider.jsx'
 import 'react-tabs/style/react-tabs.css';
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
+import AOS from "aos"
+import "aos/dist/aos.css"
 
 const ShopByCategory = () => {
 	const {user} = useContext(AuthContext)
@@ -16,6 +18,9 @@ const ShopByCategory = () => {
 			setAllData(data)
 		})
 	},[])
+	useEffect(()=>{
+		AOS.init()
+	},[])
 
 	const chessLikeData = allData.filter(categoryData=>categoryData.subcategory=="ChessLike")
 	const pointThrowData = allData.filter(categoryData=>categoryData.subcategory=="PointThrow")
@@ -25,7 +30,7 @@ const ShopByCategory = () => {
 	const funData = allData.filter(categoryData=>categoryData.subcategory=="Fun")
 	
 	return (
-		<div>
+		<div data-aos="flip-up" data-aos-duration="800">
 			<h2 className="text-5xl mb-5">Shop by Category Here!!</h2>
 			  <Tabs>
 			    <TabList className="mx-auto">
