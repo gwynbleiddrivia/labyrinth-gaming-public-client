@@ -1,12 +1,14 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import {useLoaderData, Link} from 'react-router-dom'
-
-
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
+import {AuthContext} from '../authentication/AuthProvider.jsx'
 
 const AllToys = () => {
+	const {user} = useContext(AuthContext)
 	const allToys = useLoaderData()
 	const t20Toys = allToys.slice(0,20)
-	console.log(allToys)
+	console.log(user?.providerData?.length,"from Alltoys")
+
 
 	const [boolVal, setBoolVal] = useState(true)
 	const [loadedToys, setLoadedToys] = useState([])
@@ -69,8 +71,20 @@ const AllToys = () => {
 							<p className="col-start-5 col-span-2">{toy.subcategory}</p>	
 							<p className="col-start-7 col-span-2">{toy.toyprice}</p>	
 							<p className="col-start-9 col-span-2">{toy.quantity}</p>	
-							<Link to={`/toydetails/${toy._id}`} className="col-start-11">
-							<button className="col-start-11 p-2 btn-success rounded">View Details</button>
+							{/*
+`/toydetails/${toy._id}`
+							*/}
+
+							<Link to={
+							`/toydetails/${toy._id}`
+							} className="col-start-11">
+							<button onClick={()=>{
+							if( user?.providerData?.length !== 1){
+							new Swal('You cannot pass',
+							'Login to view this content',
+							'warning')
+							}
+							}} className="col-start-11 p-2 btn-success rounded">View Details</button>
 							</Link>
 
 

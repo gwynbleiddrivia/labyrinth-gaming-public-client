@@ -31,8 +31,12 @@ const UpdateToyInfo = () => {
 		}).then((result) => {
 		  if (result.isConfirmed) {
 		
+		{/*
+			fetch(`http://localhost:5000/toys/${details[0]._id}`,{
+		*/}	
+
 			fetch(`https://labyrinth-gaming-server.vercel.app/toys/${details[0]._id}`,{
-				method: 'PUT',
+						method: 'PUT',
 				headers:{
 					'content-type' : 'application/json'
 				},

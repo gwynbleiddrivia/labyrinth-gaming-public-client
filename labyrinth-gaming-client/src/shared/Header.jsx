@@ -1,12 +1,12 @@
 import React, {useContext, useState, useEffect} from 'react'
 import {NavLink, Link, useLocation} from 'react-router-dom'
 import {AuthContext} from '../authentication/AuthProvider.jsx'
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 
 
 const Header = () => {
 	const {user, logOut} = useContext(AuthContext)
-	console.log(user,"user from Header")
-
+	
 	const [currentUser, setCurrentUser] = useState([])
 	const url = `https://labyrinth-gaming-server.vercel.app/users?email=${user?.email}`
 	useEffect(()=>{
@@ -17,8 +17,7 @@ const Header = () => {
 		setCurrentUser(data)
 	})
 	},[user])
-	console.log(currentUser[0]?.userName,"currentUser from Header")
-	console.log(currentUser[0]?.userPhoto,"currentUser from Header")
+	console.log(currentUser?.length,"currentUser from Header")
 
 
 	const handleLogout = () =>{
@@ -68,8 +67,32 @@ const Header = () => {
 			    	<NavLink to="/" className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>Home</NavLink>
 			    	<NavLink to="/blogs" className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>Blogs</NavLink>
 			    	<NavLink to="/alltoys" className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>All Toys</NavLink>
-				<NavLink to="/mytoys" className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>My Toys</NavLink>
-				<NavLink to="/addtoy" className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>Add A Toy</NavLink>
+				<NavLink to="/mytoys" className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>          <button className="uppercase" onClick={()=>{
+					if(currentUser?.length < 1){
+					new Swal('You cannot pass!',
+						 'You have to login to view this content',
+						 'warning')
+					}
+				}}> 
+				My Toys
+				</button>
+
+				</NavLink>
+				<NavLink to="/addtoy" className={({ isActive }) =>isActive ? "btn btn-success" : "btn btn-ghost"}>
+
+				
+				<button className="uppercase" onClick={()=>{
+					if(currentUser?.length < 1){
+					new Swal('You cannot pass!',
+						 'You have to log in to view this content',
+						 'warning')
+						 }
+				}}>
+				Add A Toy
+				
+				</button>  
+				
+				</NavLink>
 			    
 			    {
 			    user?

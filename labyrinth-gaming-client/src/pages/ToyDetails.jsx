@@ -5,6 +5,7 @@ const ToyDetails = () => {
 	const details = useLoaderData({idParam})
 	console.log(details)
 	const {toyphoto, toyname, sellername, selleremail, rating, toyprice, quantity, description} = details[0]
+	console.log(details?.length, 'from ToyDetails')
 	return (
 		<div className="flex flex-col align-items text-start">
 			<h2 className="text-start text-5xl mb-4">{toyname}</h2>
