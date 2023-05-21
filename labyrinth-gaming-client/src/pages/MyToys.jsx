@@ -109,7 +109,7 @@ const MyToys = () => {
 								<p className="col-start-5 col-span-1">{toy.rating}</p>	
 								<p className="col-start-6 col-span-1">{toy.quantity}</p>	
 								<button className="col-start-7 col-span-1 w-fit border border-white rounded p-2" title={toy.description}>Hover here</button>	
-								<Link to={`/toydetails/${toy._id}`} className="col-start-8 col-span-1">
+								<Link to={`/updatetoyinfo/${toy._id}`} className="col-start-8 col-span-1">
 								<button className="btn-warning rounded p-2 text-center">Update</button>
 								</Link>
 								<Link className="col-start-9">

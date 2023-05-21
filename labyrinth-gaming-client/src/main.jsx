@@ -12,6 +12,7 @@ import AllToys from './pages/AllToys.jsx'
 import AddToy from './pages/AddToy.jsx'
 import MyToys from './pages/MyToys.jsx'
 import ToyDetails from './pages/ToyDetails.jsx'
+import UpdateToyInfo from './pages/UpdateToyInfo.jsx'
 import Login from './authentication/Login.jsx'
 import Register from './authentication/Register.jsx'
 import AuthProvider from './authentication/AuthProvider.jsx'
@@ -63,6 +64,11 @@ const router = createBrowserRouter([
 	{
 		path: "/mytoys",
 		element: <PrivateRoute> <MyToys></MyToys>  </PrivateRoute>   
+	},
+	{
+		path: "/updatetoyinfo/:id",
+		element: <UpdateToyInfo></UpdateToyInfo>,
+		loader: ({params}) => fetch(`https://labyrinth-gaming-server.vercel.app/toys/${params.id}`) 
 	}
 	
     ]
