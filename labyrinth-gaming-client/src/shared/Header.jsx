@@ -54,7 +54,7 @@ const Header = () => {
 	console.log(locName)
 	return (
 		<div className="mb-4">
-			<div className="navbar bg-emerald-950 flex-col lg:flex-row justify-between pt-0 pb-0">
+			<div className="flex lg:flex-row flex-col navbar bg-emerald-950">
 			  <div className="flex">
 			    <Link to="/" className="w-1/5">
 				<img src="https://i.ibb.co/PQCRSk2/editlogo.png" alt="" className=""/>

@@ -8,7 +8,7 @@ const Footer = () => {
                                                 <input type="email" className="p-4 rounded-xl w-fit m-auto"                  placeholder="Enter email "/>                                                             
                                                 <button className="btn btn-success w-fit m-auto">Register to receive our newsletter!</button>                                                                                                                 
                                          </div>
-					 <div className="flex justify-between mt-10 mb-10">
+					 <div className="flex lg:flex-row flex-col justify-between mt-10 mb-10">
 						<div className="flex flex-col text-start">
 							<img src="https://i.ibb.co/PQCRSk2/editlogo.png" alt="" className="w-24 h-24"/>
 							<h2 className="text-2xl">Labyrinth Gaming</h2>
