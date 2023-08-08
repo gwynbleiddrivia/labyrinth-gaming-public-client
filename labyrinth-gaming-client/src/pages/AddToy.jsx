@@ -60,7 +60,7 @@ const AddToy = () => {
 	return (
 		<div>
 		                  <form onSubmit={handleAddToy} className="card-body p-0 flex flex-col">
-				  	<div className="first-div flex justify-around">
+				  	<div className="first-div flex lg:flex-row flex-col justify-around">
 							<div className="form-control">
 							  <label className="label">
 							    <span className="label-text text-white">Picture URL for the toy</span>
@@ -79,7 +79,7 @@ const AddToy = () => {
 
 
 
-					<div className="second-div flex justify-around">
+					<div className="second-div flex lg:flex-row flex-col justify-around">
 
 							<div className="form-control">
 							  <label className="label">
@@ -102,7 +102,7 @@ const AddToy = () => {
 
 
 
-					<div className="third-div flex justify-around">
+					<div className="third-div flex lg:flex-row flex-col justify-around">
       							<div className="form-control">
 							  <label className="label">
 							    <span className="label-text text-white">Sub Category</span>

@@ -44,7 +44,7 @@ const ShopByCategory = () => {
 
 			    <TabPanel>
 			   
-			   <div className="grid grid-cols-3 gap-10 m-10">
+			   <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 m-10">
    {
 				chessLikeData.map(chessLikeSingle=>{
 					return <div key={chessLikeSingle._id} className="flex flex-col mx-auto justify-around align-items">
